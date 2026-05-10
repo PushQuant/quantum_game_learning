@@ -1,0 +1,66 @@
+.gameContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #141a2e, #05070f);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.scene {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Wrapper übernimmt die horizontale Bewegung */
+.qubitWrapper {
+  transition: transform 0.2s ease;
+}
+
+/* Qubit selbst macht nur die Animationen */
+.qubit {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #6cf, #c6f);
+  animation: float 2s ease-in-out infinite, slowRotate 8s linear infinite;
+  transition: background 0.2s ease;
+  box-shadow: 0 0 30px rgba(150, 200, 255, 0.6);
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.observe { background-color: #3b82f6; }
+.observe:hover { background-color: #2563eb; }
+
+.ignore { background-color: #6b7280; }
+.ignore:hover { background-color: #4b5563; }
+
+.reset { background-color: #ef4444; }
+.reset:hover { background-color: #b91c1c; }
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
