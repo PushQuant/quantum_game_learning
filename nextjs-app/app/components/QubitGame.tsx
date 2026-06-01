@@ -15,6 +15,19 @@ export default function QubitGame() {
   if (saved) setProbability(parseFloat(saved));
 }, []);
 
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'o' || e.key === 'O') observe();
+    if (e.key === 'd' || e.key === 'D') ignore();
+    if (e.key === 'r' || e.key === 'R') reset();
+  };
+
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [observed]);
+
+
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const observe = () => {
@@ -102,9 +115,9 @@ export default function QubitGame() {
 
 
       <div>
-        <button className={`${styles.button} ${styles.observe}`} onClick={observe}>Observe</button>
-        <button className={`${styles.button} ${styles.ignore}`} onClick={ignore}>Don&apos;t observe</button>
-        <button className={`${styles.button} ${styles.reset}`} onClick={reset}>Reset</button>
+        <button className={`${styles.button} ${styles.observe}`} onClick={observe}>Observe <kbd>(O)</kbd></button>
+        <button className={`${styles.button} ${styles.ignore}`} onClick={ignore}>Don&apos;t observe <kbd>(D)</kbd></button>
+        <button className={`${styles.button} ${styles.reset}`} onClick={reset}>Reset <kbd>(R)</kbd></button>
       </div>
 
       <audio ref={audioRef} src="/BlipSound.mp3" />
