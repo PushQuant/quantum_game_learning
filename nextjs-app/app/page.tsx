@@ -1,5 +1,5 @@
-import QubitGame from "./components/QubitGame";
+import EntanglementGame from "./components/EntanglementGame";
 
 export default function Home() {
-  return <QubitGame />;
+  return <EntanglementGame />;
 }
