@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import styles from './EntanglementGame.module.css';
+import { useEffect } from 'react';
 
 type Measurement = 0 | 1 | null;
 
@@ -11,6 +12,22 @@ export default function EntanglementGame() {
   const [text, setText] = useState(
     'The two qubits are entangled. Neither has been measured yet.'
   );
+
+  // Button Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'a' || e.key === 'A') measure('A');
+      if (e.key === 'b' || e.key === 'B') measure('B');
+      if (e.key === 'r' || e.key === 'R') reset();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [result]);
+
+
+
+
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -76,8 +93,7 @@ export default function EntanglementGame() {
             onClick={() => measure('A')}
             disabled={result !== null}
           >
-            Measure A
-          </button>
+            Measure A<kbd> (A)</kbd></button>
         </div>
 
         <div className={styles.entanglement}>
@@ -103,13 +119,7 @@ export default function EntanglementGame() {
             </div>
           </div>
 
-          <button
-            className={`${styles.button} ${styles.measure}`}
-            onClick={() => measure('B')}
-            disabled={result !== null}
-          >
-            Measure B
-          </button>
+          <button className={`${styles.button} ${styles.measure}`} onClick={() => measure('B')} disabled={result !== null}>Measure B<kbd> (B)</kbd></button>
         </div>
 
       </div>
@@ -122,12 +132,7 @@ export default function EntanglementGame() {
         </p>
       )}
 
-      <button
-        className={`${styles.button} ${styles.reset}`}
-        onClick={reset}
-      >
-        Reset
-      </button>
+      <button className={`${styles.button} ${styles.reset}`} onClick={reset}>Reset<kbd>(R)</kbd></button>
 
       <audio ref={audioRef} src="/BlipSound.mp3" />
     </div>

@@ -32,6 +32,16 @@
   animation: float 2s ease-in-out infinite, slowRotate 8s linear infinite;
   transition: background 0.2s ease;
   box-shadow: 0 0 30px rgba(150, 200, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.qubitText {
+  display: block;
+  animation: counterRotate 8s linear infinite;
 }
 
 .button {
@@ -63,4 +73,10 @@
 @keyframes slowRotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+  from { transform: rotate(0deg); }
+
+  to { transform: rotate(-360deg); }
 }

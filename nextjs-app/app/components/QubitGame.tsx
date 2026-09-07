@@ -79,7 +79,10 @@ useEffect(() => {
           <div
             className={styles.qubit}
             style={{ background: qubitBackground }}
-          />
+          >
+          <span className={styles.qubitText}>
+            {result !== null ? result : '?'}
+          </span>          </div>
         </div>
       </div>
 
